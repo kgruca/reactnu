@@ -1,4 +1,3 @@
-import { Controller } from "react-spring";
 import { Container, Row, Col, Button } from "reactstrap";
 import CampsiteDetail from '../features/campsites/CampsiteDetail';
 import CampsitesList from "../features/campsites/CampsitesList";
