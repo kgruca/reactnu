@@ -5,10 +5,18 @@ import { selectRandomCampsite } from "../features/campsites/campsitesSlice";
 
 
 const CampsiteDirectoryPage = () => {
-    const selectedCampsite = selectRandomCampsite();
+    let selectedCampsite = selectRandomCampsite();
+
+    const toggleCampsite = () => {
+        selectedCampsite = selectRandomCampsite();
+        console.log(selectedCampsite);
+    };
 
     return (
         <Container>
+            <Button onClick={() => toggleCampsite()}>
+                Select Random Campsite
+            </Button>
             <Row>
                 <Col sm='5' md='7'>
                     <CampsitesList />
