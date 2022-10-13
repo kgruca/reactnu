@@ -9,12 +9,16 @@ const DisplayList = () => {
     return (
         <Row>
             {items.map((item, idx) => {
-                <Col md className="m-1" key={idx}>
-                    <DisplayCard item={item} />
-                </Col>
+                return (
+                    <Col md className="m-1" key={idx}>
+                        <DisplayCard item={item} />
+                    </Col>
+                ); 
             })}
         </Row>
     );
 };
+
+export default DisplayList; 
 
  
