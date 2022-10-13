@@ -12,14 +12,15 @@ import NucampLogo from '../app/assets/img/logo.png';
 
 
 const Header = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
     return (
         <Navbar dark color='primary' sticky='top' expand='md'>
             <NavbarBrand className='ms-5' href='/'>
                 <img src={NucampLogo} alt='Nucamp Logo' className='float-start' />
                 <h1 className='mt-1'>NuCamp</h1>
             </NavbarBrand>
-            <NavbarToggler />
-            <Collapse navbar>
+            <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
+            <Collapse isOpen={menuOpen} navbar>
                 <Nav className='ms-auto' navbar>
                     <NavItem>
                         <NavLink className='nav-link' to='/'>
