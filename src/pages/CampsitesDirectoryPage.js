@@ -1,12 +1,14 @@
 import { Container, Row, Col } from "reactstrap";
 import CampsitesList from "../features/campsites/CampsitesList";
+import SubHeader from "../components/Subheader";
 
 
 const CampsiteDirectoryPage = () => {
 
     return (
         <Container>
-                    <CampsitesList />
+            <SubHeader current='Directory' />
+            <CampsitesList />
         </Container>
     );
 };
