@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser, selectCurrentUser } from "./userSlice";
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, Button } from "reactstrap";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import defaultAvatar from '../../app/assets/img/unicorn.png'
+import { validateUserLoginForm } from "../../utils/validateUserLoginForm";
 
 
 const UserLoginForm = () => {
@@ -52,6 +53,7 @@ const UserLoginForm = () => {
                     <Formik 
                         initialValues={{ username: '', password: '' }} 
                         onSubmit={handleLogin}
+                        validate={validateUserLoginForm}
                     >
                         <Form>
                             <FormGroup>
@@ -64,6 +66,9 @@ const UserLoginForm = () => {
                                     placeholder='Username' 
                                     className='form-control' 
                                 />
+                                <ErrorMessage name="username">
+                                    {msg => <p className="text-danger">{msg}</p>}
+                                </ErrorMessage>
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor='password'>
@@ -75,9 +80,12 @@ const UserLoginForm = () => {
                                     placeholder='Password' 
                                     className='form-control' 
                                 />
+                                <ErrorMessage name="password">
+                                    {msg => <p className="text-danger">{msg}</p>}
+                                </ErrorMessage>
                             </FormGroup>
                             <Button type="submit" color="primary">
-                                Submit
+                                Login
                             </Button>
                         </Form>
                     </Formik>
