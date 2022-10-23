@@ -63,15 +63,15 @@ const commentsSlice = createSlice({
         [fetchComments.rejected]: (state, action) => {
             state.isLoading = false;
             state.errMsg = action.error ? action.error.message : 'Fetch failed';
+        },
+        [postComment.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = alert(
+                'Your comment could not be posted\nError: ' +
+                (action.error ? action.error.message : 'Fetch failed')
+            );
         }
     },
-    [postComment.rejected]: (state, action) => {
-        state.isLoading = false;
-        state.errMsg = alert(
-            'Your comment could not be posted\nError: ' +
-            (action.error ? action.error.message : 'Fetch failed')
-        );
-    }
 });
 
 
