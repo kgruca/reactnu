@@ -1,13 +1,45 @@
-import { PROMOTIONS } from '../../app/shared/PROMOTIONS';
-import { createSlice } from '@reduxjs/toolkit';
+// import { PROMOTIONS } from '../../app/shared/oldData/PROMOTIONS';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { mapImageURL } from '../../utils/mapImageURL';
+import { baseUrl } from '../../app/shared/baseUrl';
+
+
+export const fetchPromotions = createAsyncThunk(
+    'promotions/fetchedPromotions',
+    async () => {
+        const response = await fetch(baseUrl + 'promotions');
+        if (!response.ok) {
+            return Promise.reject('Unable to fetch, statue: ' + response.status);
+        }
+        const data = await response.json();
+        return data;
+    }
+);
 
 const initialState = {
-    promotionsArray: PROMOTIONS
+    promotionsArray: [],
+    isLoading: true,
+    errMsg: ''
 };
 
 const promotionsSlice = createSlice({
     name: 'partners',
-    initialState
+    initialState,
+    reducers: {},
+    extraReducers: {
+        [fetchPromotions.pending]: state => {
+            state.isLoading = true;
+        },
+        [fetchPromotions.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = '';
+            state.promotionsArray = mapImageURL(action.payload);
+        },
+        [fetchPromotions.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = action.error ? action.error.message : 'Fetch failed';
+        }
+    }
 });
 
 export const promotionsReducer = promotionsSlice.reducer;
