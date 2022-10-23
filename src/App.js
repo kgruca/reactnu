@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { fetchPartners } from './features/partners/partnersSlice';
+import { fetchPromotions } from './features/promotions/promotionsSlice';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchCampsites());
         dispatch(fetchPartners());
+        dispatch(fetchPromotions());
     }, [dispatch]);
 
     return (
