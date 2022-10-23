@@ -40,3 +40,25 @@ function App() {
 };
 
 export default App;
+
+
+
+// return isLoading ? (
+//     <Loading />
+// ) : errMsg ? (
+//     <Error errMsg={errMsg} />
+// ) : (
+//     <Col md='5' className="m-1">
+//         <h4>Comments</h4>
+//         {comments.map(comment => {
+//             return <Comment key={comment.id} comment={comment} />;
+//         })}
+//         <CommentForm campsiteId={campsiteId} />
+//     </Col>
+// );
+// return (
+//     <Col md='5' className="m-1">
+//         There are no comments for this campsite yet.
+//     </Col>
+// )
+// };
